@@ -29,8 +29,9 @@ class Rapic:
             if r.status_code >= 200 and r.status_code <= 299:
                 self.access_t = r1.get("access")
                 self.refresh_t = r1.get("refresh")
+                return "success"
             else:
-                print("rapicio login failed")
+                return "Login error:{}".format(r1)
         except Exception as e:
             print("Login error:{}".format(e))
 
@@ -46,7 +47,10 @@ class Rapic:
             }
             url = "http://{0}.rapic.io/{1}/{2}/".format(self.username, projectName, objectName)
             r = requests.post(url, headers=head, data=json.dumps(data))
-            return r.json()
+            result = r.json()
+            if r.status_code >= 200 and r.status_code <= 299:
+                return result['data']
+            return "Post error:{}".format(result)
         except Exception as e:
             print("Posting data error:{}".format(e))
 
@@ -62,7 +66,10 @@ class Rapic:
             }
             url = "http://{0}.rapic.io/{1}/{2}/{3}".format(self.username, projectName, objectName, id)
             r = requests.post(url, headers=head, data=json.dumps(data))
-            return r.json()
+            result = r.json()
+            if r.status_code >= 200 and r.status_code <= 299:
+                return result['data']
+            return "Update error:{}".format(result)
         except Exception as e:
             print("Updating data error:{}".format(e))
 
@@ -94,7 +101,10 @@ class Rapic:
             }
             url = "http://{0}.rapic.io/{1}/{2}/{3}".format(self.username, projectName, objectName, id)
             r = requests.delete(url, headers=head)
-            return r.json()
+            result = r.json()
+            if r.status_code >= 200 and r.status_code <= 299:
+                return result['result']
+            return "Delete error:{}".format(result)
         except Exception as e:
             print("Deleting data error:{}".format(e))
 
