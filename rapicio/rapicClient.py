@@ -103,7 +103,7 @@ class Rapic:
             h = {
                 "Content-Type": "application/json"
             }
-            url_time = "https://rapicapi.herokuapp.com/api/token/refresh/ "
+            url_time = "https://rapicapi.herokuapp.com/api/token/refresh/"
             params = {
                 "refresh": self.refresh_t
             }
