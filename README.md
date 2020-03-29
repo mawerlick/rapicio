@@ -3,7 +3,7 @@ pip install -i https://test.pypi.org/simple/ rapicio
 
 # Usage 
 ```
->>> from rapicio.rapicClient import Rapic
+>>> from rapicio.rapic_client import Rapic
 >>> rapic_client = Rapic("username","password")
 >>> rapic_client.login()
 >>> my_data = rapic_client.get_data("project_name","object_name")
